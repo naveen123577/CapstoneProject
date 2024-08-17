@@ -20,4 +20,7 @@ public class BusHomePage extends BasePage {
     public void clickBookTrain() {
 
     }
+
+    public void enterDestinationCity() {
+    }
 }
