@@ -23,4 +23,7 @@ public class BusHomePage extends BasePage {
 
     public void enterDestinationCity() {
     }
+
+    public void enterSourceCity(String travelFrom) {
+    }
 }
