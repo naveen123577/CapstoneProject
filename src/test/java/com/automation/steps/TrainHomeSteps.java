@@ -8,17 +8,6 @@ import org.junit.Assert;
 
 public class TrainHomeSteps {
 
-    BusHomePage homePage=new BusHomePage();
-    @Given("user opens the website")
-    public void user_opens_the_website() {
-        homePage.openWebsite();
-    }
-
-    @Then("verify user is on homepage")
-    public void verify_user_is_on_homepage() {
-        Assert.assertTrue(homePage.verifyUserIsOnHomePage());
-    }
-
     @When("user clicks on the Train Tickets option")
     public void user_clicks_on_the_train_tickets_option() {
         homePage.clickBookTrain();
