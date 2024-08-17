@@ -9,5 +9,3 @@ Feature: Validate the Bus Search Functionalities
     And user select the date of travel as "2024-08-30"
     And user click on the "Search Buses" button
     Then user should see a list of available buses for the selected route
-
-    Scenario:
