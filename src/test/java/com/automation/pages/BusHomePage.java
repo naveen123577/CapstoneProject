@@ -22,9 +22,12 @@ public class BusHomePage extends BasePage {
     }
 
     public void enterSourceCity(String sourceCity) {
-        travelFrom.sendKeys(sourceCity);
+        
     }
 
     public void enterDestinationCity() {
+    }
+
+    public void clickOnSearchButton() {
     }
 }
