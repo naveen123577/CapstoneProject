@@ -10,4 +10,7 @@ public class TrainHomePage extends BasePage {
     public void clickTrainTicket() {
         ticketButton.click();
     }
+
+    public void enterSourceCity() {
+    }
 }

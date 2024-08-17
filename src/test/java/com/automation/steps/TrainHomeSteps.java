@@ -17,7 +17,7 @@ public class TrainHomeSteps {
 
     @When("chooses from location")
     public void chooses_from_location() {
-
+        trainHomePage.enterSourceCity();
     }
 
     @When("chooses to location")
