@@ -8,8 +8,12 @@ public class BusHomePage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='sc-jAaTju fOJRFi' and text()=\"India's No. 1 Online Bus Ticket Booking Site\"]")
     WebElement Heading;
-    public void openWebsite() {
 
+    @FindBy(css = "src")
+    WebElement travelFrom;
+
+    public void openWebsite() {
+        
         driver.get(ConfigReader.getConfigValue("base.url"));
     }
 
@@ -17,13 +21,13 @@ public class BusHomePage extends BasePage {
         return Heading.isDisplayed();
     }
 
-    public void clickBookTrain() {
-
+    public void enterSourceCity(String sourceCity) {
+        
     }
 
     public void enterDestinationCity() {
     }
 
-    public void enterSourceCity(String travelFrom) {
+    public void clickOnSearchButton() {
     }
 }

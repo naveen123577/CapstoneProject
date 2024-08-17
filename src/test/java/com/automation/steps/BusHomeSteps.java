@@ -36,9 +36,8 @@ public class BusHomeSteps {
         
     }
 
-    @When("user click on the {string} button")
-    public void user_click_on_the_button(String string) {
-        
-        
+    @When("user click on the search button")
+    public void user_click_on_the_search_button() {
+        busHomePage.clickOnSearchButton();
     }
 }
