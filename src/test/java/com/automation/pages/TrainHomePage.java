@@ -12,5 +12,6 @@ public class TrainHomePage extends BasePage {
     }
 
     public void enterSourceCity() {
+
     }
 }
