@@ -21,9 +21,8 @@ public class BusHomeSteps {
     }
 
     @When("user enter {string} as the source city")
-    public void user_enter_as_the_source_city(String string) {
-        
-        
+    public void user_enter_as_the_source_city(String travelFrom) {
+        busHomePage.enterSourceCity(travelFrom);
     }
 
     @When("user enter {string} as the destination city")
