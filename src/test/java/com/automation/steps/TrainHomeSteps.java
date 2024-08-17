@@ -1,6 +1,7 @@
 package com.automation.steps;
 
 import com.automation.pages.BusHomePage;
+import com.automation.pages.TrainHomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,10 +9,10 @@ import org.junit.Assert;
 
 public class TrainHomeSteps {
 
+    TrainHomePage trainHomePage=new TrainHomePage();
     @When("user clicks on the Train Tickets option")
     public void user_clicks_on_the_train_tickets_option() {
-        homePage.clickBookTrain();
-
+        trainHomePage.clickTrainTicket();
     }
 
     @When("chooses from location")

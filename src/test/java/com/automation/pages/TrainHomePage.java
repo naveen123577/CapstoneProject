@@ -1,4 +1,13 @@
 package com.automation.pages;
 
-public class TrainHomePage {
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class TrainHomePage extends BasePage {
+
+    @FindBy(xpath ="//li[@id='rail_tickets_vertical']")
+    WebElement ticketButton;
+    public void clickTrainTicket() {
+        ticketButton.click();
+    }
 }
