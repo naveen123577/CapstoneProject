@@ -16,4 +16,8 @@ public class BusHomePage extends BasePage {
     public boolean verifyUserIsOnHomePage() {
         return Heading.isDisplayed();
     }
+
+    public void clickBookTrain() {
+
+    }
 }

@@ -21,6 +21,7 @@ public class TrainHomeSteps {
 
     @When("user clicks on the Train Tickets option")
     public void user_clicks_on_the_train_tickets_option() {
+        homePage.clickBookTrain();
 
     }
 
