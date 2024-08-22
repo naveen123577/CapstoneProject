@@ -2,14 +2,17 @@ package com.automation.pages;
 
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Set;
+
 public class BusHomePage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='sc-jAaTju fOJRFi' and text()=\"India's No. 1 Online Bus Ticket Booking Site\"]")
-    WebElement Heading;
+    WebElement heading;
 
     @FindBy(css = "#src")
     WebElement travelFromInput;
@@ -35,13 +38,34 @@ public class BusHomePage extends BasePage {
     @FindBy(css = "#search_button")
     WebElement searchBusBtn;
 
+    @FindBy(className = "scrollTopButton")
+    WebElement scrollTopButton;
+
+    @FindBy(xpath = "//div[@class='sc-eHgmQL ehQshY']/i")
+    WebElement swapButton;
+
+    @FindBy(xpath = "(//text[@class='placeHolderMainText'])[1]")
+    WebElement travelFromSwap;
+
+    @FindBy(xpath = "(//text[@class='placeHolderMainText'])[2]")
+    WebElement travelToSwap;
+
+    @FindBy(xpath = "//h2[contains(@class,'OfferSection')]/parent::div/child::a")
+    WebElement viewAllOfferBtn;
+    
+    @FindBy(xpath = "(//span[@class='name_rb_secondary_item'])[2]")
+    WebElement profileDropDownBtn;
+
+    @FindBy(xpath = "//span[@class='header_dropdown_item_name' and text()='Cancel Ticket']")
+    WebElement cancelTicketOption;
+
     public void openWebsite() {
         
         driver.get(ConfigReader.getConfigValue("base.url"));
     }
 
     public boolean verifyUserIsOnHomePage() {
-        return Heading.isDisplayed();
+        return heading.isDisplayed();
     }
 
     public void enterSourceCity(String sourceCity) {
@@ -58,7 +82,7 @@ public class BusHomePage extends BasePage {
         searchBusBtn.click();
     }
 
-    public void selectData(String date) {
+    public void selectAData(String date) {
         String travelDate = date;
 //        String checkOutDate = "13 November 2024";
 
@@ -85,4 +109,48 @@ public class BusHomePage extends BasePage {
         dayElement.click();
     }
 
+    public void scrollsToTheBottomOfThePage() throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = driver.findElement(By.className("globalPresenceHomeV2"));
+
+        int yOffset = element.getLocation().getY();
+        for (int i = 0; i < yOffset; i += 10) {
+            js.executeScript("window.scrollBy(0, 10);");
+            Thread.sleep(10);  // Adjust the sleep time to control speed
+        }
+
+    }
+
+    public boolean isBackToScrollButtonPresent() {
+        return scrollTopButton.isDisplayed();
+    }
+
+    public void clickOnBackToScrollButton() {
+        scrollTopButton.click();
+    }
+
+    public boolean isPageScrollsToTopOfPage() {
+        return heading.isDisplayed();
+    }
+
+    public boolean isCitiesAreSwapped() {
+        String beforeSwapSourceCity = travelFromSwap.getText();
+        String beforeSwapDestinationCity = travelToSwap.getText();
+        swapButton.click();
+        String afterSwapSourceCity = travelFromSwap.getText();
+        String afterSwapDestinationCity = travelToSwap.getText();
+        return afterSwapSourceCity.equals(beforeSwapDestinationCity) && afterSwapDestinationCity.equals(beforeSwapSourceCity);
+    }
+
+    public void clickOnViewAllOffersBtn() {
+        viewAllOfferBtn.click();
+    }
+
+    public void clickOnProfileDropDownBtn() {
+        profileDropDownBtn.click();
+    }
+
+    public void clickOnCancelTicket() {
+        cancelTicketOption.click();
+    }
 }

@@ -20,5 +20,8 @@ public class ConfigReader {
     public static String getConfigValue(String key) {
         return pro.getProperty(key);
     }
+    public static void setConfigValue(String key,String value) {
+        pro.setProperty(key,value);
+    }
 
 }
