@@ -37,6 +37,13 @@
             <artifactId>cucumber-junit</artifactId>
             <version>7.16.1</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>com.detectlanguage</groupId>
+            <artifactId>detectlanguage</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>

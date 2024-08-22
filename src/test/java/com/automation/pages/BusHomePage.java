@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class BusHomePage extends BasePage {
 
-    @FindBy(xpath = "//h1[@class='sc-jAaTju fOJRFi' and text()=\"India's No. 1 Online Bus Ticket Booking Site\"]")
+    @FindBy(xpath = "//h1")
     WebElement Heading;
 
     @FindBy(css = "src")
