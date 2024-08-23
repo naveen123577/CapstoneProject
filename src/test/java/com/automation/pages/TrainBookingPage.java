@@ -37,14 +37,14 @@ public class TrainBookingPage extends BasePage {
 
     public void enterUsername(String username) {
 
-        Set<String> handles = driver.getWindowHandles();
+       /* Set<String> handles = driver.getWindowHandles();
         String current = driver.getWindowHandle();
         for (String handle : handles) {
             if (!handle.equals(current)) {
                 driver.close();
                 driver.switchTo().window(handle);
             }
-        }
+        }*/
         javaScriptExecutorClick(clickUsernameField);
         clickUsernameField.sendKeys(username);
     }

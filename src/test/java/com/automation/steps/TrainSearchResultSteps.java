@@ -15,7 +15,7 @@ public class TrainSearchResultSteps {
 
     }
     @Then("verify {string} message is displayed")
-    public void verifyMessageIsDisplayed(String msg) {
+    public void verifyMessageIsDisplayed(String msg) throws InterruptedException {
         String popup=trainHomePage.getPopupMessage();
         Assert.assertEquals(msg,popup);
     }

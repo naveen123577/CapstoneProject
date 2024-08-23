@@ -78,7 +78,7 @@ public class TrainHomePage extends BasePage {
     public void enterSourceCity(String from) throws InterruptedException {
         clkFromField.click();
         fromCity.sendKeys(from);
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         System.out.println(fromCity.getText());
         firstCity.click();
 
@@ -87,7 +87,7 @@ public class TrainHomePage extends BasePage {
     public void enterDestinationCity(String to) throws InterruptedException {
         clkToField.click();
         destinationCity.sendKeys(to);
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         System.out.println(destinationCity.getText());
         destinationFirstCity.click();
     }
@@ -123,7 +123,8 @@ public class TrainHomePage extends BasePage {
         return trainList.size() >= 1;
     }
 
-    public String getPopupMessage() {
+    public String getPopupMessage() throws InterruptedException {
+        Thread.sleep(3000);
         Alert alert = driver.switchTo().alert();
         return alert.getText();
     }
