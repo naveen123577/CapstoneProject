@@ -71,7 +71,7 @@ public class BusSearchResultSteps {
     }
 
     @And("user clicks on an empty seat")
-    public void userClicksOnAnEmptySeat() throws InterruptedException {
+    public void userClicksOnAnEmptySeat(){
         busSearchResultPage.clickOnEmptySeat();
     }
 

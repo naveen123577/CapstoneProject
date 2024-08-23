@@ -77,7 +77,7 @@ public class BusSearchResultPage extends BasePage{
 
     public boolean isSleeperBusResultsDisplayed() {
         for (WebElement bus: busTypeList){
-            return bus.getText().contains("Sleeper");
+            return bus.getText().toLowerCase().contains("sleeper");
         }
         return false;
     }
@@ -88,7 +88,7 @@ public class BusSearchResultPage extends BasePage{
 
     public boolean isAcBusResultsDisplayed() {
         for (WebElement bus: busTypeList){
-            return bus.getText().contains("A/C");
+            return bus.getText().toUpperCase().contains("A/C");
         }
         return false;
     }
@@ -99,23 +99,27 @@ public class BusSearchResultPage extends BasePage{
 
     public boolean isNonAcBusResultsDisplayed() {
         for (WebElement bus: busTypeList){
-            return bus.getText().contains("NON AC");
+            return bus.getText().toUpperCase().contains("NON A/C");
         }
         return false;
     }
 
     public void clickOnClearAllFilterBtn() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement element = driver.findElement(By.id("view-more-btn"));
-
-        int yOffset = element.getLocation().getY();
-        for (int i = 0; i < yOffset; i += 10) {
-            js.executeScript("window.scrollBy(0, 10);");
-            Thread.sleep(10);  // Adjust the sleep time to control speed
+        while(true) {
+            WebElement element = driver.findElement(By.id("view-more-btn"));
+            int yOffset = element.getLocation().getY();
+            for (int i = 0; i < yOffset; i += 10) {
+                js.executeScript("window.scrollBy(0, 10);");
+                Thread.sleep(15);  // Adjust the sleep time to control speed
+            }
+            if(isPresent(element)){
+                break;
+            }
         }
-        JavascriptExecutor jss = (JavascriptExecutor) driver;
-        jss.executeScript("arguments[0].click()",clearAllFilterBtn);
-//        clearAllFilterBtn.click();
+
+        js.executeScript("arguments[0].click()",clearAllFilterBtn);
+
     }
 
     public boolean isFullListOfBusesAreDisplayed() throws InterruptedException {
@@ -136,7 +140,7 @@ public class BusSearchResultPage extends BasePage{
         return isPresent(boardingAndDroppingDetails);
     }
 
-    public void clickOnEmptySeat() throws InterruptedException {
+    public void clickOnEmptySeat(){
         var canvas_dimension = canvasElement.getSize();
         var canvas_center_x = canvas_dimension.getWidth()+10;
         var canvas_center_y = canvas_dimension.getHeight()-10;
@@ -147,7 +151,6 @@ public class BusSearchResultPage extends BasePage{
             clickOnEmptySeat(canvasElement,x,y);
             x=x+10;
             y=y+10;
-//            Thread.sleep(2000);
         }
     }
 

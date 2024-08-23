@@ -57,7 +57,7 @@ public class BusHomeSteps {
     }
 
     @Then("verify the page scrolls to the top of the page")
-    public void verifyThePageScrollsToTheTopOfThePage() {
+    public void verifyThePageScrollsToTheTopOfThePage() throws InterruptedException {
         Assert.assertTrue(busHomePage.isPageScrollsToTopOfPage());
     }
 

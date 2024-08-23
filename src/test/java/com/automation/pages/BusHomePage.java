@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Set;
-
 public class BusHomePage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='sc-jAaTju fOJRFi' and text()=\"India's No. 1 Online Bus Ticket Booking Site\"]")
@@ -53,14 +51,13 @@ public class BusHomePage extends BasePage {
     @FindBy(xpath = "//h2[contains(@class,'OfferSection')]/parent::div/child::a")
     WebElement viewAllOfferBtn;
     
-    @FindBy(xpath = "(//span[@class='name_rb_secondary_item'])[2]")
+    @FindBy(xpath = "//span[@class='name_rb_secondary_item' and text()='Account']")
     WebElement profileDropDownBtn;
 
     @FindBy(xpath = "//span[@class='header_dropdown_item_name' and text()='Cancel Ticket']")
     WebElement cancelTicketOption;
 
     public void openWebsite() {
-        
         driver.get(ConfigReader.getConfigValue("base.url"));
     }
 
@@ -84,14 +81,10 @@ public class BusHomePage extends BasePage {
 
     public void selectAData(String date) {
         String travelDate = date;
-//        String checkOutDate = "13 November 2024";
-
         dateSelect.click();
         selectDate(travelDate, driver);
-//        selectDate(checkOutDate, driver);
-
-
     }
+
     public void selectDate(String date, WebDriver driver){
         String monthYear = date.substring(date.indexOf(" ")+1);
         String day = date.substring(0,date.indexOf(" "));
@@ -118,18 +111,18 @@ public class BusHomePage extends BasePage {
             js.executeScript("window.scrollBy(0, 10);");
             Thread.sleep(10);  // Adjust the sleep time to control speed
         }
-
     }
 
     public boolean isBackToScrollButtonPresent() {
-        return scrollTopButton.isDisplayed();
+        return isPresent(scrollTopButton);
     }
 
     public void clickOnBackToScrollButton() {
         scrollTopButton.click();
     }
 
-    public boolean isPageScrollsToTopOfPage() {
+    public boolean isPageScrollsToTopOfPage() throws InterruptedException {
+        Thread.sleep(4000);
         return heading.isDisplayed();
     }
 
