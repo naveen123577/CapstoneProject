@@ -12,6 +12,9 @@ public class TrainHomePage extends BasePage {
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
+    @FindBy(xpath = "//span[text()='redRail: Train Ticket Booking']")
+    WebElement trainHomeHeading
+            ;
     @FindBy(xpath = "//label[text()='From']")
     WebElement clkFromField;
 
@@ -78,17 +81,14 @@ public class TrainHomePage extends BasePage {
     public void enterSourceCity(String from) throws InterruptedException {
         clkFromField.click();
         fromCity.sendKeys(from);
-        Thread.sleep(5000);
-        System.out.println(fromCity.getText());
+        Thread.sleep(1000);
         firstCity.click();
-
     }
 
     public void enterDestinationCity(String to) throws InterruptedException {
         clkToField.click();
         destinationCity.sendKeys(to);
-        Thread.sleep(5000);
-        System.out.println(destinationCity.getText());
+        Thread.sleep(1000);
         destinationFirstCity.click();
     }
 
@@ -133,9 +133,7 @@ public class TrainHomePage extends BasePage {
     public boolean verifySwapButton() {
         String beforeSource = fromCity.getAttribute("value").trim();
         String beforeDestination = destinationCity.getAttribute("value").trim();
-        System.out.println("before:" + beforeSource + " after: " + beforeDestination);
         swapButton.click();
-        System.out.println("before:" + fromCity.getAttribute("value") + " after: " + destinationCity.getAttribute("value"));
         return fromCity.getAttribute("value").trim().equalsIgnoreCase(beforeDestination) && destinationCity.getAttribute("value").equalsIgnoreCase(beforeSource);
     }
 
@@ -166,5 +164,9 @@ public class TrainHomePage extends BasePage {
     public String getErrorMessage() {
 
         return errMsg.getText();
+    }
+
+    public boolean verifyTrainHomePage() {
+        return isPresent(trainHomeHeading);
     }
 }

@@ -3,7 +3,8 @@ Feature: Validate the train search functionality
     Given user opens the website
     Then verify user is on homepage
     When user clicks on the Train Tickets option
-    And chooses from location
+    Then verify user is on Train home page
+    When chooses from location
     And chooses to location
     And picks a date
     When user clicks the Search Train Button
@@ -14,7 +15,8 @@ Feature: Validate the train search functionality
     Given user opens the website
     Then verify user is on homepage
     When user clicks on the Train Tickets option
-    And chooses Source destination
+    Then verify user is on Train home page
+    When chooses Source destination
     And chooses To Destination
     And picks a date
     When user clicks the Search Train Button
@@ -24,7 +26,8 @@ Feature: Validate the train search functionality
     Given user opens the website
     Then verify user is on homepage
     When user clicks on the Train Tickets option
-    And chooses from location
+    Then verify user is on Train home page
+    When chooses from location
     And chooses to location
     Then verify source and destination have been swapped after clicking the swap button
 
@@ -33,7 +36,8 @@ Feature: Validate the train search functionality
     Given user opens the website
     Then verify user is on homepage
     When user clicks on the Train Tickets option
-    And chooses from location
+    Then verify user is on Train home page
+    When chooses from location
     And chooses to location
     And chooses a date "29 OCT 2030"
     When user clicks the Search Train Button

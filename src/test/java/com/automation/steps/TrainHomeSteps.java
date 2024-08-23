@@ -1,10 +1,8 @@
 package com.automation.steps;
 
-import com.automation.pages.BusHomePage;
 import com.automation.pages.TrainHomePage;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -83,6 +81,10 @@ public class TrainHomeSteps {
 
     }
 
+    @Then("verify user is on Train home page")
+    public void verifyUserIsOnTrainHomePage() {
+        Assert.assertTrue(trainHomePage.verifyTrainHomePage());
+    }
 }
 
 

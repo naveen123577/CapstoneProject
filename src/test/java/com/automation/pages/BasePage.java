@@ -13,11 +13,8 @@ public class BasePage {
     JavascriptExecutor js;
     public BasePage(){
         this.driver = DriverManager.getDriver();
-        PageFactory.initElements(driver, this);
-        js=(JavascriptExecutor)driver;
-    }
-    public void javaScriptExecutorClick(WebElement element){
-        js.executeScript("arguments[0].click()",element);
+        this.js = (JavascriptExecutor)driver;
+        PageFactory.initElements(driver,this);
     }
     public boolean isPresent(WebElement element) {
         try {
@@ -31,5 +28,8 @@ public class BasePage {
     }
     public void setImplicitWait(long sec) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(sec));
+    }
+    public void javaScriptExecutorClick(WebElement element){
+        js.executeScript("arguments[0].click()",element);
     }
 }

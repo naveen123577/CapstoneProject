@@ -1,16 +1,14 @@
 package com.automation.pages;
 
-import com.automation.utils.ConfigReader;
 import com.detectlanguage.DetectLanguage;
 import com.detectlanguage.errors.APIError;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Objects;
 import java.util.Set;
 
 public class HelpPage extends BasePage{
@@ -57,7 +55,6 @@ public class HelpPage extends BasePage{
 
 
         languageButton.click();
-        System.out.println(languageButton.getText());
     }
 
     public void selectALanguage() {
@@ -68,15 +65,8 @@ public class HelpPage extends BasePage{
 
         WebElement clkLang= driver.findElement(By.xpath(xpath));
         String lang=clkLang.getText();
-        System.out.println(xpath);
-        System.out.println(clkLang.isDisplayed());
-        System.out.println(setButton.isDisplayed());
-//
         javaScriptExecutorClick(clkLang);
-//
         setButton.click();
-
-
         WebElement element = null;
         boolean found = false;
 
@@ -85,8 +75,6 @@ public class HelpPage extends BasePage{
                 // Try to find the element
                 Thread.sleep(3000);
                 element = driver.findElement(By.xpath("//div[@class='login-textDiv']"));
-                // Interact with the element (e.g., click it)
-//                element.click();
                 found = true;
             } catch (StaleElementReferenceException e) {
                 // Handle the stale element exception
@@ -107,31 +95,29 @@ public class HelpPage extends BasePage{
         } catch (APIError e) {
             e.printStackTrace();
         }
-
-        System.out.println(language1+" "+language2);
         return language1.equals(language2);
     }
 
     public void setALanguage(String language) {
 
-        if (language.equals("Tamil"))
-        {
-            WebElement tamil= driver.findElement(By.xpath("(//input[@id='checkmark'])[2]"));
-            tamil.click();
-            xpath="//span[text()='தமிழ்']";
-        } else if (language.equals("Telugu")) {
-            WebElement telugu=driver.findElement(By.xpath("(//input[@id='checkmark'])[4]"));
-            telugu.click();
-            xpath ="//span[text()='తెలుగు']";;
-        }
-        else if (language.equals("Hindi")) {
-                    WebElement hindi=driver.findElement(By.xpath("(//input[@id='checkmark'])[3]"));
-                    hindi.click();
-                    xpath="//span[text()='हिन्दी']";
-        }
-        else
-        {
-            System.out.println("Choose Language which is available in the Application");
+        switch (language) {
+            case "Tamil" -> {
+                WebElement tamil = driver.findElement(By.xpath("(//input[@id='checkmark'])[2]"));
+                tamil.click();
+                xpath = "//span[text()='தமிழ்']";
+            }
+            case "Telugu" -> {
+                WebElement telugu = driver.findElement(By.xpath("(//input[@id='checkmark'])[4]"));
+                telugu.click();
+                xpath = "//span[text()='తెలుగు']";
+                ;
+            }
+            case "Hindi" -> {
+                WebElement hindi = driver.findElement(By.xpath("(//input[@id='checkmark'])[3]"));
+                hindi.click();
+                xpath = "//span[text()='हिन्दी']";
+            }
+            default -> System.out.println("Choose Language which is available in the Application");
         }
 
     }
