@@ -39,7 +39,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.detectlanguage</groupId>
+            <groupId> com.detectlanguage</groupId>
             <artifactId>detectlanguage</artifactId>
             <version>1.0.0</version>
         </dependency>
