@@ -1,13 +1,13 @@
 package com.automation.steps;
 
-import com.automation.pages.CouponsPage;
+import com.automation.pages.CouponsPageWeb;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
 public class CouponsSteps {
 
-    CouponsPage couponsPage = new CouponsPage();
+    CouponsPageWeb couponsPage = new CouponsPageWeb();
 
     @Then("verify offer coupons page is displayed")
     public void verifyOfferCouponsPageIsDisplayed() {

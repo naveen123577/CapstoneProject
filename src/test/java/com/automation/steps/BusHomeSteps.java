@@ -1,6 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.BusHomePage;
+import com.automation.pages.BusHomePageWeb;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +9,7 @@ import org.junit.Assert;
 
 public class BusHomeSteps {
 
-    BusHomePage busHomePage=new BusHomePage();
+    BusHomePageWeb busHomePage=new BusHomePageWeb();
 
     @Given("user opens the website")
     public void user_opens_the_website() {

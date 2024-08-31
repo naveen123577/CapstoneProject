@@ -1,6 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.HelpPage;
+import com.automation.pages.HelpPageWeb;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,7 +8,7 @@ import org.junit.Assert;
 
 public class HelpSteps {
 
-    HelpPage helpPage = new HelpPage();
+    HelpPageWeb helpPage = new HelpPageWeb();
 
     @When("user clicks on the help button")
     public void user_clicks_on_the_help_button() {

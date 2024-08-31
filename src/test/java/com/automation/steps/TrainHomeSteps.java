@@ -1,6 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.TrainHomePage;
+import com.automation.pages.TrainHomePageWeb;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -10,7 +10,7 @@ import org.junit.Assert;
 public class TrainHomeSteps {
 
     String cityDest;
-    TrainHomePage trainHomePage=new TrainHomePage();
+    TrainHomePageWeb trainHomePage=new TrainHomePageWeb();
     @When("user clicks on the Train Tickets option")
     public void user_clicks_on_the_train_tickets_option() {
         trainHomePage.clickTrainTicket();
