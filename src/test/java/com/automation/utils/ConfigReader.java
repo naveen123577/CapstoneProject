@@ -24,11 +24,4 @@ public class ConfigReader {
         pro.setProperty(key,value);
     }
 
-    public static void main(String[] args) {
-        String conf = "தமிழ்";
-        ConfigReader.initConfig();
-        System.out.println(ConfigReader.getConfigValue("language.ta"));
-        System.out.println(conf);
-    }
-
 }
