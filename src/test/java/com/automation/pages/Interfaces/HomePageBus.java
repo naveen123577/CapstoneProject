@@ -11,10 +11,10 @@ public interface HomePageBus {
     void clickOnSearchButton();
     void selectAData(String date);
     void selectDate(String date, WebDriver driver);
-    void scrollsToTheBottomOfThePage();
+    void scrollsToTheBottomOfThePage() throws InterruptedException;
     boolean isBackToScrollButtonPresent();
     void clickOnBackToScrollButton();
-    boolean isPageScrollsToTopOfPage();
+    boolean isPageScrollsToTopOfPage() throws InterruptedException;
     boolean isCitiesAreSwapped();
     void clickOnViewAllOffersBtn();
     void clickOnProfileDropDownBtn();

@@ -11,8 +11,8 @@ public class Hooks {
     @Before
     public void setUp(Scenario scenario){
         ReportManager.initReporter(scenario);
-        DriverManager.createDriver();
         ConfigReader.initConfig();
+        DriverManager.createDriver();
     }
     @After
     public void cleanUp(Scenario scenario){

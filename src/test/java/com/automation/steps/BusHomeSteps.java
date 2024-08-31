@@ -1,6 +1,9 @@
 package com.automation.steps;
 
 import com.automation.pages.BusHomePageWeb;
+import com.automation.pages.Interfaces.HomePageBus;
+import com.automation.pages.mobile.BusHomePageMobile;
+import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +12,19 @@ import org.junit.Assert;
 
 public class BusHomeSteps {
 
-    BusHomePageWeb busHomePage=new BusHomePageWeb();
+    HomePageBus busHomePage;
+
+    public BusHomeSteps(){
+        String env = ConfigReader.getConfigValue("application.type");
+
+        if(env.equals("mobile")) {
+            busHomePage = new BusHomePageMobile();
+        }else{
+            busHomePage = new BusHomePageWeb();
+        }
+    }
+
+//    BusHomePageWeb busHomePage=new BusHomePageWeb();
 
     @Given("user opens the website")
     public void user_opens_the_website() {
