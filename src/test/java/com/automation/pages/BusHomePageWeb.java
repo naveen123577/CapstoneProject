@@ -1,5 +1,6 @@
 package com.automation.pages;
 
+import com.automation.pages.Interfaces.HomePageBus;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -7,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class BusHomePageWeb extends BasePageWeb {
+public class BusHomePageWeb extends BasePageWeb implements HomePageBus {
 
     @FindBy(xpath = "//h1[@class='sc-jAaTju fOJRFi' and text()=\"India's No. 1 Online Bus Ticket Booking Site\"]")
     WebElement heading;
