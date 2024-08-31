@@ -2,11 +2,17 @@ package com.automation.pages.mobile;
 
 import com.automation.pages.Interfaces.HomePageBus;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
+
+    @FindBy(id = "in.redbus.android:id/continueButton")
+    WebElement openPageContinueBtn;
+
     @Override
     public void openWebsite() {
-
+        openPageContinueBtn.click();
     }
 
     @Override
