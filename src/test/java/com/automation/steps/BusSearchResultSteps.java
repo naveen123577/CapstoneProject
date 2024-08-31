@@ -1,6 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.BusSearchResultPage;
+import com.automation.pages.BusSearchResultPageWeb;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,7 +8,7 @@ import org.junit.Assert;
 
 public class BusSearchResultSteps {
 
-    BusSearchResultPage busSearchResultPage = new BusSearchResultPage();
+    BusSearchResultPageWeb busSearchResultPage = new BusSearchResultPageWeb();
 
     @Then("verify the list of buses are displayed")
     public void verifyTheListOfBusesAreDisplayed() {

@@ -1,6 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.TicketCancelPage;
+import com.automation.pages.TicketCancelPageWeb;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -9,7 +9,7 @@ import org.junit.Assert;
 
 public class TicketCancelSteps {
 
-    TicketCancelPage ticketCancelPage = new TicketCancelPage();
+    TicketCancelPageWeb ticketCancelPage = new TicketCancelPageWeb();
 
     @Then("verify the ticket cancellation page is displayed")
     public void verifyTheTicketCancellationPageIsDisplayed() {
