@@ -1,7 +1,7 @@
 package com.automation.pages.mobile;
 
 import com.automation.pages.Interfaces.HomePageBus;
-import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +22,9 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
         openPageContinueBtn.click();
 //        String currentTitle = exploreStayFirstCard.getText();
 //        String previousTitle = "";
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
         int n = 0;
         while (n<3) {
             int x = openPageContainer.getLocation().getX();
@@ -29,8 +32,8 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
             int cardWidth = openPageContainer.getSize().getWidth();
             int cardHeight = openPageContainer.getSize().getHeight();
 
-            scrollOrSwipe(x + cardWidth, y + cardHeight / 2, 0, y + cardHeight / 2);
-            openPageSkipBtn = driver.findElement(By.id("in.redbus.android.onBoardingModule:id/skip"));
+            scrollOrSwipe(width, height/2 , 0, height/2);
+//            openPageSkipBtn = driver.findElement(By.id("in.redbus.android.onBoardingModule:id/skip"));
             n+=1;
         }
         openPageSkipBtn.click();
