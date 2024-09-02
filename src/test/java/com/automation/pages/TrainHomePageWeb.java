@@ -13,8 +13,7 @@ public class TrainHomePageWeb extends BasePageWeb {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
     @FindBy(xpath = "//span[text()='redRail: Train Ticket Booking']")
-    WebElement trainHomeHeading
-            ;
+    WebElement trainHomeHeading;
     @FindBy(xpath = "//label[text()='From']")
     WebElement clkFromField;
 

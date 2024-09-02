@@ -23,9 +23,9 @@ public class DriverManager {
             capabilities.setCapability("appActivity", ConfigReader.getConfigValue("app.activity"));
             capabilities.setCapability("appPackage", ConfigReader.getConfigValue("app.package"));
             capabilities.setCapability("autoGrantPermissions", true);
-
             driver = new AppiumDriver(capabilities);
-        } else {
+        }
+        else {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
