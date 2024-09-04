@@ -1,16 +1,34 @@
 package com.automation.steps;
 
+import com.automation.pages.Interfaces.HomepageTrain;
 import com.automation.pages.TrainHomePageWeb;
+import com.automation.pages.mobile.TrainHomePageMobile;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+//import com.automation.pages.TrainHomePageWeb;
+//import com.automation.pages.TrainHomePageWeb;
+;
+
 public class TrainHomeSteps {
 
     String cityDest;
-    TrainHomePageWeb trainHomePage=new TrainHomePageWeb();
+
+    HomepageTrain trainHomePage;
+    public TrainHomeSteps() {
+        if (ConfigReader.getConfigValue("application.type").equals("mobile"))
+        {
+            trainHomePage=new TrainHomePageMobile();
+        }
+        else
+        {
+            trainHomePage= (HomepageTrain) new TrainHomePageWeb();
+        }
+    }
+
     @When("user clicks on the Train Tickets option")
     public void user_clicks_on_the_train_tickets_option() {
         trainHomePage.clickTrainTicket();
