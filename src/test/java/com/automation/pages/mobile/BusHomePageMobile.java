@@ -31,7 +31,7 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
     @FindBy (xpath = "//android.view.View[@resource-id='View_source']")
     WebElement sourceSelect;
 
-    @FindBy(xpath = "//android.widget.TextView[@text='Search Boarding Point']")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Search Boarding Point\"]\n")
     WebElement sourceInput;
 
     @FindBy(className = "android.view.View")
@@ -55,7 +55,7 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
         openPageSkipBtn.click();
 
         openPageSecondSkipBtn.click();
-        updateAddClose.click();
+        clickOnElementIfPresent(updateAddClose);
         clickOnElementIfPresent(ratingClose);
     }
 
