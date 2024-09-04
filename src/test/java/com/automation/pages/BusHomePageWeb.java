@@ -81,9 +81,8 @@ public class BusHomePageWeb extends BasePageWeb implements HomePageBus {
     }
 
     public void selectAData(String date) {
-        String travelDate = date;
         dateSelect.click();
-        selectDate(travelDate, driver);
+        selectDate(date, driver);
     }
 
     public void selectDate(String date, WebDriver driver){

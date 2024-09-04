@@ -19,8 +19,17 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
    /* @FindBy(xpath = "//android.widget.TextView[@content-desc='Easy Booking, Booking your preferred bus ticket is just a few taps away']")
     WebElement headText;*/
 
-    @FindBy(xpath ="android.widget.TextView[@resource-id='in.redbus.android.authmodule:id/buttonSkip']")
-    WebElement skipBtn;
+    @FindBy(id = "in.redbus.android.authmodule:id/buttonSkip")
+    WebElement openPageSecondSkipBtn;
+
+    @FindBy(id = "in.redbus.android:id/btnBsClose")
+    WebElement ratingClose;
+
+    @FindBy(xpath = "//android.view.ViewGroup[@resource-id='android:id/content']/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View")
+    WebElement updateAddClose;
+
+    @FindBy(xpath = "(//android.widget.TextView[@text='Bus Tickets'])[2]")
+    WebElement homeHeading;
 
     @FindBy(xpath ="//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_deny_button']")
     WebElement denyBtn;
@@ -35,31 +44,26 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
         int n = 1;
         while (n<3) {
             int x = openPageContainer.getLocation().getX();
-            System.out.println(x);
             int y = openPageContainer.getLocation().getY();
-            System.out.println(y);
             int cardWidth = openPageContainer.getSize().getWidth();
-            System.out.println(cardWidth);
             int cardHeight = openPageContainer.getSize().getHeight();
-            System.out.println(cardHeight);
 
             scrollOrSwipe(x + cardWidth-200, y + cardHeight / 2, 0, y + cardHeight / 2);
-           // openPageSkipBtn = driver.findElement(By.id("in.redbus.android.onBoardingModule:id/skip"));
             n+=1;
         }
 
 
         openPageSkipBtn.click();
-        waitForElementToBeVisible(skipBtn);
+//        waitForElementToBeVisible(openPageSecondSkipBtn);
 
-        skipBtn.click();
-        clickOnElementIfPresent(denyBtn);
-        clickOnElementIfPresent(closeBtn);
+        openPageSecondSkipBtn.click();
+        updateAddClose.click();
+        clickOnElementIfPresent(ratingClose);
     }
 
     @Override
     public boolean verifyUserIsOnHomePage() {
-        return true;
+        return isDisplay(homeHeading);
     }
 
     @Override
