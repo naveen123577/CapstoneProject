@@ -16,9 +16,6 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
     @FindBy(id = "in.redbus.android.onBoardingModule:id/skip")
     WebElement openPageSkipBtn;
 
-   /* @FindBy(xpath = "//android.widget.TextView[@content-desc='Easy Booking, Booking your preferred bus ticket is just a few taps away']")
-    WebElement headText;*/
-
     @FindBy(id = "in.redbus.android.authmodule:id/buttonSkip")
     WebElement openPageSecondSkipBtn;
 
@@ -31,11 +28,14 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
     @FindBy(xpath = "(//android.widget.TextView[@text='Bus Tickets'])[2]")
     WebElement homeHeading;
 
-    @FindBy(xpath ="//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_deny_button']")
-    WebElement denyBtn;
+    @FindBy (xpath = "//android.view.View[@resource-id='View_source']")
+    WebElement sourceSelect;
 
-    @FindBy(xpath ="//android.widget.ImageView[@resource-id='in.redbus.android:id/btnBsClose']")
-    WebElement closeBtn;
+    @FindBy(xpath = "//android.widget.TextView[@text='Search Boarding Point']")
+    WebElement sourceInput;
+
+    @FindBy(className = "android.view.View")
+    WebElement firstSourceSelect;
 
     @Override
     public void openWebsite() {
@@ -52,9 +52,7 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
             n+=1;
         }
 
-
         openPageSkipBtn.click();
-//        waitForElementToBeVisible(openPageSecondSkipBtn);
 
         openPageSecondSkipBtn.click();
         updateAddClose.click();
@@ -68,7 +66,9 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
 
     @Override
     public void enterSourceCity(String sourceCity) {
-
+        sourceSelect.click();
+        sourceInput.sendKeys(sourceCity);
+        firstSourceSelect.click();
     }
 
     @Override
