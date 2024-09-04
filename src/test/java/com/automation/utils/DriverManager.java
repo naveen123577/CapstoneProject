@@ -26,6 +26,7 @@ public class DriverManager {
             driver = new AppiumDriver(capabilities);
         }
         else {
+            System.out.println("Hii there");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
