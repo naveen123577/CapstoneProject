@@ -118,20 +118,17 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
 
         WebElement monthYearElement = driver.findElement(By.id("in.redbus.android:id/calendar_month_year_textview"));
 
-        String lastFourChars = date.substring(date.length() - 4);
-        System.out.println(monthYear);
+        String lastFourChars = monthYearElement.getText().substring(monthYearElement.getText().length() - 4);
 
         while(!monthYear.equals(monthYearElement.getText().substring(0,3)+ " " + lastFourChars)){
-            // clicking the next button
             nextBtn.click();
-            System.out.println(monthYearElement.getText().substring(0,3)+ " " + lastFourChars);
             monthYearElement = driver.findElement(By.id("in.redbus.android:id/calendar_month_year_textview"));
+            lastFourChars = monthYearElement.getText().substring(monthYearElement.getText().length() - 4);
         }
 
         String xpath = "//android.widget.TextView[@resource-id='in.redbus.android:id/cal_text' and @text='%s']";
         WebElement dayElement = driver.findElement(By.xpath(String.format(xpath,day)));
         dayElement.click();
-//        driver.findElement(By.xpath("//android.widget.TextView[@resource-id='in.redbus.android:id/cal_text' and @text='20']")).click();
     }
 
     @Override
