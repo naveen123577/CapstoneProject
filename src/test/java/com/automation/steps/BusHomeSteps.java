@@ -48,7 +48,7 @@ public class BusHomeSteps {
 
     @When("user select the date of travel as {string}")
     public void user_select_the_date_of_travel_as(String date) {
-        busHomePage.selectAData(date);
+        busHomePage.selectADate(date);
     }
 
     @When("user click on the search button")
