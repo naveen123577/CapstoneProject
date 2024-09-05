@@ -9,7 +9,7 @@ public interface HomePageBus {
     void enterSourceCity(String sourceCity);
     void enterDestinationCity(String destinationCity);
     void clickOnSearchButton();
-    void selectAData(String date);
+    void selectADate(String date);
     void selectDate(String date, WebDriver driver);
     void scrollsToTheBottomOfThePage() throws InterruptedException;
     boolean isBackToScrollButtonPresent();

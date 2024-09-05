@@ -1,6 +1,7 @@
 package com.automation.pages.mobile;
 
 import com.automation.pages.Interfaces.HomePageBus;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,11 +32,26 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
     @FindBy (xpath = "//android.view.View[@resource-id='View_source']")
     WebElement sourceSelect;
 
-    @FindBy(xpath = "//android.widget.TextView[@text=\"Search Boarding Point\"]\n")
+    @FindBy(xpath = "//android.widget.EditText")
     WebElement sourceInput;
 
-    @FindBy(className = "android.view.View")
-    WebElement firstSourceSelect;
+    @FindBy(xpath = "//android.view.View[@resource-id='View_destination']")
+    WebElement destinationSelect;
+
+    @FindBy(xpath = "//android.widget.EditText")
+    WebElement destinationInput;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Date of Journey']")
+    WebElement dateSelect;
+
+    @FindBy(id = "in.redbus.android:id/calendar_right_arrow")
+    WebElement nextBtn;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Search buses']")
+    WebElement searchBusBtn;
+
+//    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='android:id/content']//android.view.View/android.view.View/android.view.View")
+//    WebElement firstSourceSelect;
 
     @Override
     public void openWebsite() {
@@ -68,27 +84,54 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
     public void enterSourceCity(String sourceCity) {
         sourceSelect.click();
         sourceInput.sendKeys(sourceCity);
-        firstSourceSelect.click();
+        String xpath = "//android.widget.TextView[@text='%s']";
+        String fullXpath = String.format(xpath, sourceCity);
+        waitForElementToBePresentNotVisible(fullXpath);
+        driver.findElement(By.xpath(fullXpath)).click();
     }
 
     @Override
     public void enterDestinationCity(String destinationCity) {
-
+        destinationSelect.click();
+        destinationInput.sendKeys(destinationCity);
+        String xpath = "(//android.widget.TextView[@text='%s'])[1]";
+        String fullXpath = String.format(xpath, destinationCity);
+        waitForElementToBePresentNotVisible(fullXpath);
+        driver.findElement(By.xpath(fullXpath)).click();
     }
 
     @Override
     public void clickOnSearchButton() {
-
+        searchBusBtn.click();
     }
 
     @Override
-    public void selectAData(String date) {
-
+    public void selectADate(String date) {
+        dateSelect.click();
+        selectDate(date, driver);
     }
 
     @Override
     public void selectDate(String date, WebDriver driver) {
+        String monthYear = date.substring(date.indexOf(" ")+1).toUpperCase();
+        String day = date.substring(0,date.indexOf(" "));
 
+        WebElement monthYearElement = driver.findElement(By.id("in.redbus.android:id/calendar_month_year_textview"));
+
+        String lastFourChars = date.substring(date.length() - 4);
+        System.out.println(monthYear);
+
+        while(!monthYear.equals(monthYearElement.getText().substring(0,3)+ " " + lastFourChars)){
+            // clicking the next button
+            nextBtn.click();
+            System.out.println(monthYearElement.getText().substring(0,3)+ " " + lastFourChars);
+            monthYearElement = driver.findElement(By.id("in.redbus.android:id/calendar_month_year_textview"));
+        }
+
+        String xpath = "//android.widget.TextView[@resource-id='in.redbus.android:id/cal_text' and @text='%s']";
+        WebElement dayElement = driver.findElement(By.xpath(String.format(xpath,day)));
+        dayElement.click();
+//        driver.findElement(By.xpath("//android.widget.TextView[@resource-id='in.redbus.android:id/cal_text' and @text='20']")).click();
     }
 
     @Override

@@ -80,7 +80,7 @@ public class BusHomePageWeb extends BasePageWeb implements HomePageBus {
         searchBusBtn.click();
     }
 
-    public void selectAData(String date) {
+    public void selectADate(String date) {
         dateSelect.click();
         selectDate(date, driver);
     }
