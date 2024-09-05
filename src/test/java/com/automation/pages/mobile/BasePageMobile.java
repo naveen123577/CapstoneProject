@@ -25,7 +25,7 @@ public class BasePageMobile {
     public BasePageMobile() {
         this.driver = DriverManager.getDriver();
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     public void clickByJS(WebElement element) {

@@ -10,33 +10,48 @@ public class TrainHomePageMobile extends BasePageMobile implements HomepageTrain
     @FindBy(xpath = "(//android.view.View[@resource-id='view_tab_header'])[2]")
     WebElement trainTicketBtn;
 
-    @FindBy(xpath = "//android.widget.TextView[@text='From']")
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='in.redbus.android.redrailsDynamicModule:id/fromEditView']")
     WebElement fromBtn;
 
     @FindBy(id = "in.redbus.android.redrailsDynamicModule:id/queryField")
     WebElement fromInput;
 
-    @FindBy(xpath ="//android.view.ViewGroup[@resource-id='in.redbus.android.redrailsDynamicModule:id/itemContainer'])[1])")
+    @FindBy(xpath="(//android.widget.TextView[@resource-id='in.redbus.android.redrailsDynamicModule:id/cityName'])[10]")
     WebElement  firstSourceOption;
+
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='in.redbus.android.redrailsDynamicModule:id/buttonTitle']")
+    WebElement trainSearchBtn;
+
+    @FindBy(xpath ="//android.widget.TextView[@resource-id='in.redbus.android.redrailsDynamicModule:id/toEditView']")
+    WebElement toBtn;
+
+    @FindBy(xpath = "//android.widget.EditText[@resource-id='in.redbus.android.redrailsDynamicModule:id/queryField']")
+    WebElement toInput;
+
+    @FindBy(xpath ="//android.widget.TextView[@resource-id='in.redbus.android.redrailsDynamicModule:id/recentSearchTitle']")
+    WebElement destFirstOption;
+
     @Override
     public void clickTrainTicket() {
         trainTicketBtn.click();
-        waitForElementToBeVisible(firstSourceOption);
-
     }
 
     @Override
     public void enterSourceCity(String from) throws InterruptedException {
         fromBtn.click();
         fromInput.sendKeys(from);
-        waitForElementToBeVisible(firstSourceOption);
+        waitForElementToBeClickable(firstSourceOption);
         firstSourceOption.click();
-
     }
 
     @Override
     public void enterDestinationCity(String to) throws InterruptedException {
-
+        waitForElementToBeVisible(toBtn);
+        toBtn.click();
+        waitForElementToBeVisible(toInput);
+        toInput.sendKeys(to);
+        waitForElementToBeClickable(destFirstOption);
+        destFirstOption.click();
     }
 
     @Override
@@ -96,6 +111,6 @@ public class TrainHomePageMobile extends BasePageMobile implements HomepageTrain
 
     @Override
     public boolean verifyTrainHomePage() {
-        return false;
+        return trainSearchBtn.isDisplayed();
     }
 }
