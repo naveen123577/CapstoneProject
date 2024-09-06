@@ -5,7 +5,7 @@ Feature: Validate the Bus Search Functionalities
     Then verify user is on homepage
     When user enter "Bangalore" as the source city
     And user enter "Chennai" as the destination city
-    And user select the date of travel as "20 Oct 2025"
+    And user select the date of travel as "20 Oct 2024"
     And user click on the search button
     Then verify the list of buses are displayed
 
@@ -25,7 +25,7 @@ Feature: Validate the Bus Search Functionalities
     Then verify user is on homepage
     When user enter "Bangalore" as the source city
     And user enter "Chennai" as the destination city
-    And user select the date of travel as "20 Sep 2024"
+    And user select the date of travel as "20 Oct 2024"
     And user click on the search button
     Then verify the list of buses are displayed
     When user selects AC from the bus type filter
@@ -47,7 +47,7 @@ Feature: Validate the Bus Search Functionalities
     Then verify user is on homepage
     When user enter "Bangalore" as the source city
     And user enter "Chennai" as the destination city
-    And user select the date of travel as "20 Sep 2024"
+    And user select the date of travel as "20 Oct 2024"
     And user click on the search button
     Then verify the list of buses are displayed
     When user selects AC from the bus type filter

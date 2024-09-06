@@ -1,5 +1,6 @@
 package com.automation.pages;
 
+import com.automation.pages.Interfaces.SearchResultBus;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class BusSearchResultPageWeb extends BasePageWeb {
+public class BusSearchResultPageWeb extends BasePageWeb implements SearchResultBus {
 
     @FindBy(xpath = "//div[@class='travels lh-24 f-bold d-color']")
     List<WebElement>buses;

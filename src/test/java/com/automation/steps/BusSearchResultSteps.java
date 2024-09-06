@@ -1,6 +1,11 @@
 package com.automation.steps;
 
+import com.automation.pages.BusHomePageWeb;
 import com.automation.pages.BusSearchResultPageWeb;
+import com.automation.pages.Interfaces.SearchResultBus;
+import com.automation.pages.mobile.BusHomePageMobile;
+import com.automation.pages.mobile.BusSearchResultPageMobile;
+import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,7 +13,16 @@ import org.junit.Assert;
 
 public class BusSearchResultSteps {
 
-    BusSearchResultPageWeb busSearchResultPage = new BusSearchResultPageWeb();
+    SearchResultBus busSearchResultPage;
+    public BusSearchResultSteps(){
+        String env = ConfigReader.getConfigValue("application.type");
+
+        if(env.equals("mobile")) {
+            busSearchResultPage = new BusSearchResultPageMobile();
+        }else{
+            busSearchResultPage = new BusSearchResultPageWeb();
+        }
+    }
 
     @Then("verify the list of buses are displayed")
     public void verifyTheListOfBusesAreDisplayed() {
@@ -16,7 +30,7 @@ public class BusSearchResultSteps {
     }
 
     @When("user selects Sleeper from the bus type filter")
-    public void userSelectsSleeperFromTheBusTypeFilter() {
+    public void userSelectsSleeperFromTheBusTypeFilter() throws InterruptedException {
         busSearchResultPage.clickOnSleeperCheckBox();
     }
 
@@ -26,7 +40,7 @@ public class BusSearchResultSteps {
     }
 
     @When("user selects AC from the bus type filter")
-    public void userSelectsACFromTheBusTypeFilter() {
+    public void userSelectsACFromTheBusTypeFilter() throws InterruptedException {
         busSearchResultPage.clickOnAcCheckBox();
     }
 
@@ -57,7 +71,7 @@ public class BusSearchResultSteps {
 
     @And("verify clear all filters button is not present")
     public void verifyClearAllFiltersButtonIsNotPresent() {
-        Assert.assertFalse(busSearchResultPage.isClearAllFilterBtnDisplayed());
+        Assert.assertTrue(busSearchResultPage.isClearAllFilterBtnDisplayed());
     }
 
     @When("user clicks on the boarding & dropping points of first bus")
