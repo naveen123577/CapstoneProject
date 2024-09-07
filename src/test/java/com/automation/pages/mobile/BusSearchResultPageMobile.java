@@ -178,8 +178,8 @@ public class BusSearchResultPageMobile extends BasePageMobile implements SearchR
 
         while (!isPresent(viewAllDroppingPointsBtn)) {
             scrollOrSwipe(width / 2, height / 2, width / 2, 0);
-            String droppingPointsPath = "//android.widget.TextView[@text='%s']/following-sibling::android.widget.TextView[1]";
-            String droppingPoint = String.format(droppingPointsPath,ConfigReader.getConfigValue("boardingDate"));
+            String droppingPointsPath = "//android.widget.TextView[@text='%s']/following-sibling::android.widget.TextView";
+            String droppingPoint = String.format(droppingPointsPath,ConfigReader.getConfigValue("Bus.travelTo"));
             WebElement droppingPointsElement = driver.findElement(By.xpath(droppingPoint));
             droppingPoints = isPresent(droppingPointsElement);
         }

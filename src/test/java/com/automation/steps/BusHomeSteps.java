@@ -38,17 +38,17 @@ public class BusHomeSteps {
 
     @When("user enter {string} as the source city")
     public void user_enter_as_the_source_city(String travelFrom) {
-        busHomePage.enterSourceCity(travelFrom);
+        busHomePage.enterSourceCity(ConfigReader.getConfigValue(travelFrom));
     }
 
     @When("user enter {string} as the destination city")
     public void user_enter_as_the_destination_city(String travelTo) {
-        busHomePage.enterDestinationCity(travelTo);
+        busHomePage.enterDestinationCity(ConfigReader.getConfigValue(travelTo));
     }
 
     @When("user select the date of travel as {string}")
     public void user_select_the_date_of_travel_as(String date) {
-        busHomePage.selectADate(date);
+        busHomePage.selectADate(ConfigReader.getConfigValue(date));
     }
 
     @When("user click on the search button")
