@@ -149,7 +149,7 @@ public class BusSearchResultPageWeb extends BasePageWeb implements SearchResultB
         int x = 10, y = 10;
 
         while (x<canvas_center_x && y< canvas_center_y && !isPresent(boardingPointHeadingInViewSeat)){
-            clickOnEmptySeat(canvasElement,x,y);
+            clickOnSingleEmptySeat(canvasElement,x,y);
             x=x+10;
             y=y+10;
         }
@@ -159,7 +159,7 @@ public class BusSearchResultPageWeb extends BasePageWeb implements SearchResultB
         viewSeatBtn.click();
     }
 
-    public void clickOnEmptySeat(WebElement canvas, int x, int y){
+    public void clickOnSingleEmptySeat(WebElement canvas, int x, int y){
         new Actions(driver)
                 .moveToElement(canvas,x,y)
                 .click().pause(1000).build().perform();

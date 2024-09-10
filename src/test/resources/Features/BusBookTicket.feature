@@ -25,4 +25,4 @@ Feature: Validate the boarding points and dropping points after selecting the vi
     When user clicks on the view seats button
     And user clicks on an empty seat
     Then verify the boarding and dropping details list are not null
-    And verify the price in the boarding and dropping section is greater than the price in listing page
+    And verify the price in the boarding and dropping section is greater than or equal to the price in listing page

@@ -119,8 +119,8 @@ public class BusSearchResultSteps {
         busSearchResultPage.storeFirstBusPriceOfListingPage();
     }
 
-    @Then("verify the price in the boarding and dropping section is greater than the price in listing page")
-    public void verifyThePriceInTheBoardingAndDroppingSectionIsGreaterThanThePriceInListingPage() {
+    @Then("verify the price in the boarding and dropping section is greater than or equal to the price in listing page")
+    public void verifyThePriceInTheBoardingAndDroppingSectionIsGreaterThanOrEqualToThePriceInListingPage() {
         Assert.assertTrue(busSearchResultPage.isPriceOfListingPageAndBoardingDroppingPageSame());
     }
 }

@@ -2,6 +2,7 @@ package com.automation.pages.mobile;
 
 import com.automation.pages.Interfaces.HomePageBus;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,8 +51,8 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
     @FindBy(xpath = "//android.widget.TextView[@text='Search buses']")
     WebElement searchBusBtn;
 
-//    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='android:id/content']//android.view.View/android.view.View/android.view.View")
-//    WebElement firstSourceSelect;
+    @FindBy(xpath = "//android.widget.TextView[@text='View all']")
+    WebElement viewAllCoupons;
 
     @Override
     public void openWebsite() {
@@ -158,7 +159,14 @@ public class BusHomePageMobile extends BasePageMobile implements HomePageBus {
 
     @Override
     public void clickOnViewAllOffersBtn() {
+        Dimension dimension = driver.manage().window().getSize();
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
 
+        while (!isPresent(viewAllCoupons)) {
+            scrollOrSwipe(width / 2, height / 2, width / 2, 0);
+        }
+        viewAllCoupons.click();
     }
 
     @Override

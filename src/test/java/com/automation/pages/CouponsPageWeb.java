@@ -1,12 +1,13 @@
 package com.automation.pages;
 
+import com.automation.pages.Interfaces.CouponsPageBus;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 import java.util.Set;
 
-public class CouponsPageWeb extends BasePageWeb {
+public class CouponsPageWeb extends BasePageWeb implements CouponsPageBus {
     
     @FindBy(xpath = "//h1[@class='XCN' and text()='Offers']")
     WebElement offerHeading;

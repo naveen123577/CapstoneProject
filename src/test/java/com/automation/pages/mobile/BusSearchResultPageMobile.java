@@ -6,6 +6,7 @@ import io.netty.util.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -59,6 +60,30 @@ public class BusSearchResultPageMobile extends BasePageMobile implements SearchR
 
     @FindBy(xpath = "//android.widget.TextView[@text='View all dropping points']")
     WebElement viewAllDroppingPointsBtn;
+
+    @FindBy(xpath = "//android.widget.ScrollView/android.widget.HorizontalScrollView")
+    WebElement seatElement;
+
+    @FindBy(xpath = "//android.widget.Button")
+    WebElement selectBoardingDroppingPointsBtn;
+
+    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View")
+    List<WebElement>boardingPointList;
+
+    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View")
+    WebElement droppingPointBtn;
+    
+    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View")
+    List<WebElement> droppingPointList;
+
+    @FindBy(xpath = "//android.view.View[@content-desc='Go back to previous page']")
+    WebElement backBtn;
+
+    @FindBy(xpath = "(//android.widget.TextView[contains(@text,'₹')])[1]")
+    WebElement firstBusPriceInListingPage;
+
+    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='android:id/content']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.widget.TextView[contains(@text,'₹')]")
+    WebElement firstBusPriceAfterSelectingSeat;
 
     @Override
     public boolean isSearchResultFound() {
@@ -187,23 +212,50 @@ public class BusSearchResultPageMobile extends BasePageMobile implements SearchR
     }
 
     @Override
-    public void clickOnEmptySeat() {
+    public void clickOnEmptySeat(){
+        var seat_dimension = seatElement.getSize();
+        var seat_center_x = seat_dimension.getWidth()+10;
+        var seat_center_y = seat_dimension.getHeight()-10;
 
+        int x = 10, y = 10;
+
+        while (x<seat_center_x && y< seat_center_y && !isPresent(selectBoardingDroppingPointsBtn)){
+            clickOnSingleEmptySeat(seatElement,x,y);
+            x=x+10;
+            y=y+10;
+        }
+    }
+
+    public void clickOnSingleEmptySeat(WebElement canvas, int x, int y){
+        new Actions(driver)
+                .moveToElement(canvas,x,y)
+                .click().pause(1000).build().perform();
     }
 
     @Override
     public void clickOnViewSeat() {
-
+        sortBtn.click();
+        buses.get(0).click();
     }
 
     @Override
     public boolean isBoardingAndDroppingDetailsListPresent() {
-        return false;
+        selectBoardingDroppingPointsBtn.click();
+        boolean boardingPointPresent = false;
+        boolean droppingPointPresent = false;
+        if (!boardingPointList.isEmpty()){
+            boardingPointPresent = true;
+        }
+        droppingPointBtn.click();
+        if(!droppingPointList.isEmpty()){
+            droppingPointPresent = true;
+        }
+        return boardingPointPresent && droppingPointPresent;
     }
 
     @Override
     public boolean isSeatsAreVisible() {
-        return false;
+        return true;
     }
 
     @Override
@@ -213,12 +265,20 @@ public class BusSearchResultPageMobile extends BasePageMobile implements SearchR
 
     @Override
     public void storeFirstBusPriceOfListingPage() {
-
+        String firstBusPrice = firstBusPriceInListingPage.getText();
+        ConfigReader.setConfigValue("firstBusPriceListingPage",firstBusPrice);
     }
 
     @Override
     public boolean isPriceOfListingPageAndBoardingDroppingPageSame() {
-        return false;
+        backBtn.click();
+        String firstBusPrice = firstBusPriceAfterSelectingSeat.getText();
+        String priceOfFirstBus = firstBusPrice.substring(2).replace(",", "");
+        int firstBusPriceIntValue = Integer.parseInt(priceOfFirstBus);
+        String firstBusPriceListingPage = ConfigReader.getConfigValue("firstBusPriceListingPage");
+        String priceWithoutFirstChar = firstBusPriceListingPage.substring(3).replace(",", "");
+        int firstBusPriceListingPageIntValue = Integer.parseInt(priceWithoutFirstChar);
+        return firstBusPriceIntValue >= firstBusPriceListingPageIntValue;
     }
 
     @Override

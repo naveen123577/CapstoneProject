@@ -1,13 +1,28 @@
 package com.automation.steps;
 
+import com.automation.pages.BusSearchResultPageWeb;
 import com.automation.pages.CouponsPageWeb;
+import com.automation.pages.Interfaces.CouponsPageBus;
+import com.automation.pages.Interfaces.SearchResultBus;
+import com.automation.pages.mobile.BusSearchResultPageMobile;
+import com.automation.pages.mobile.CouponsPageMobile;
+import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
 public class CouponsSteps {
 
-    CouponsPageWeb couponsPage = new CouponsPageWeb();
+    CouponsPageBus couponsPage;
+    public CouponsSteps(){
+        String env = ConfigReader.getConfigValue("application.type");
+
+        if(env.equals("mobile")) {
+            couponsPage = new CouponsPageMobile();
+        }else{
+            couponsPage = new CouponsPageWeb();
+        }
+    }
 
     @Then("verify offer coupons page is displayed")
     public void verifyOfferCouponsPageIsDisplayed() {
